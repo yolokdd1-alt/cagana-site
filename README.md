@@ -13,6 +13,19 @@
 GitHub Pages для бесплатного аккаунта работает только с публичными
 репозиториями. Перед реальным запуском уберите `noindex` и проверьте данные.
 
+## Публикация
+
+Сайт размещён на GitHub Pages из репозитория
+[`yolokdd1-alt/cagana-site`](https://github.com/yolokdd1-alt/cagana-site).
+После изменений достаточно отправить коммит в `main` — GitHub Pages
+пересоберёт сайт автоматически:
+
+```bash
+git add .
+git commit -m "Update content"
+git push origin main
+```
+
 ## Что открыть
 
 | Файл | Что это |
