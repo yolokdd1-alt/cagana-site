@@ -1,0 +1,20 @@
+{
+  "source": "https://www.instagram.com/cosm.cagana/reel/DeHJxA2MM75/",
+  "retrieved_on": "2026-10-28",
+  "video_resolution": [
+    720,
+    1280
+  ],
+  "frame_time_seconds": 1,
+  "source_frame": "assets/source/cagana-working-frame.png",
+  "output": "assets/img/cagana-working.webp",
+  "output_size": [
+    720,
+    960
+  ],
+  "script": "scripts/prepare-work-photo.py",
+  "editor_mode": "built-in image_gen",
+  "editor_prompt": "Use case: precise-object-edit. Asset type: real photograph for the About section of this clinician's website. Image 1 is the EDIT TARGET, an actual video frame. Make only two corrections: remove the superimposed white Russian caption in the middle, reconstructing only the plain white shirt and small background areas under those letters; and remove the uniformly dark video overlay with a restrained natural exposure adjustment. Preserve the original scene and crop exactly. Strict invariants: preserve the clinician's exact face, identity, pose, hair, skin texture, white shirt, both hands and gloves, and the client's exact face and skin, position and all facial features. Preserve the treatment device, its existing lights and screen, clinic fixtures, background, perspective and lighting direction. Do NOT smooth skin, beautify faces, alter anatomy, invent fingers, change the clinical action, add equipment or replace the photo. No new text, logos, or watermark. The result should remain this same real candid photograph, merely with the caption and dark graphic overlay removed.",
+  "processing": "Only a small caption repair patch from the image editor is composited into the original frame. Global brightness 2.05, crop (0,70,720,1030), WebP quality 92. Faces, hands and patient skin use original frame pixels with exposure correction. Device region excluded from repair mask.",
+  "repair_patch": "assets/source/cagana-caption-repair.png"
+}

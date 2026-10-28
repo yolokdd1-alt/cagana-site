@@ -1,0 +1,35 @@
+{
+  "source": "https://www.instagram.com/stories/highlights/18098362868245941/",
+  "profile": "cosm.cagana",
+  "case": "Ботулинотерапия Full Face, анфас",
+  "retrieved_on": "2026-10-28",
+  "source_kind": "frame from video story",
+  "video_resolution": [
+    1080,
+    1920
+  ],
+  "frame_time_seconds": 1,
+  "source_frame": "assets/source/fullface-front-story-frame.png",
+  "output_size": [
+    468,
+    624
+  ],
+  "preparation_script": "scripts/prepare-fullface-comparison.py",
+  "processing": "crop, translation, uniform scale and whole-frame rotation; bicubic resampling; lossless WebP",
+  "retouching": false,
+  "generated_details": false,
+  "notes": "1080p was the highest representation observed in the loaded story. Differences in expression and perspective remain.",
+  "available_video_labels": [
+    "360p",
+    "540p",
+    "720p",
+    "1080p"
+  ],
+  "alignment_landmarks": [
+    "left eye center",
+    "right eye center",
+    "nose base",
+    "chin"
+  ],
+  "alignment_method": "weighted least-squares similarity; translation, uniform scale, whole-frame rotation"
+}

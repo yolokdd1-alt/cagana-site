@@ -1,0 +1,24 @@
+{
+  "checked_on": "2026-10-28",
+  "source": "https://dikidi.net/882000",
+  "profile_title": "Цагана Боваева | Элиста | Онлайн-запись",
+  "address": {
+    "city": "Элиста",
+    "street": "ул. Ленина, 263А",
+    "details": "Цоколь, кабинет 5"
+  },
+  "checked_steps": [
+    "Профиль специалиста",
+    "Список услуг",
+    "Выбор консультации",
+    "Календарь с доступным временем"
+  ],
+  "city_selector_observed": false,
+  "moscow_address_verified": false,
+  "moscow_booking_path": "Уточнение адреса, дат и стоимости через https://vk.com/cosmcagana или Instagram",
+  "appointment_created": false,
+  "time_slot_selected": false,
+  "personal_data_submitted": false,
+  "map_link_kind": "Yandex Maps address search; no guessed coordinates",
+  "notes": "No Moscow city choice was found in the examined profile, service selection, and calendar. This does not establish the absence of another booking profile."
+}

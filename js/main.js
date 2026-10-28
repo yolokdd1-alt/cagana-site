@@ -5,6 +5,8 @@
 (function () {
   "use strict";
 
+  document.documentElement.classList.add("js");
+
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
@@ -12,14 +14,12 @@
   /* ---------- Header ---------- */
 
   const header = document.querySelector("[data-header]");
-  let lastScroll = 0;
 
   const onScroll = () => {
     const y = window.scrollY;
     if (header) {
       header.classList.toggle("is-scrolled", y > 24);
     }
-    lastScroll = y;
   };
 
   window.addEventListener("scroll", onScroll, { passive: true });
@@ -31,7 +31,15 @@
   const mobileMenu = document.querySelector("[data-mobile-menu]");
 
   if (menuToggle && mobileMenu) {
-    const setMenu = (open) => {
+    const menuBackground = document.querySelectorAll("main, footer, .mobile-booking, .skip-link, .header-inner .brand, .header-inner .nav, .header-actions > a");
+
+    const setMenu = (open, restoreFocus = false) => {
+      const wasOpen = menuToggle.getAttribute("aria-expanded") === "true";
+      if (!open && !wasOpen) return;
+      if (!open && mobileMenu.contains(document.activeElement)) menuToggle.focus();
+      if (!open && restoreFocus) menuToggle.focus();
+      mobileMenu.inert = !open;
+      menuBackground.forEach((element) => { element.inert = open; });
       menuToggle.setAttribute("aria-expanded", String(open));
       menuToggle.setAttribute(
         "aria-label",
@@ -40,6 +48,7 @@
       mobileMenu.setAttribute("aria-hidden", String(!open));
       mobileMenu.classList.toggle("is-open", open);
       document.body.classList.toggle("menu-open", open);
+      if (open) mobileMenu.querySelector("a")?.focus();
     };
 
     menuToggle.addEventListener("click", () => {
@@ -51,7 +60,19 @@
     });
 
     window.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") setMenu(false);
+      if (menuToggle.getAttribute("aria-expanded") !== "true") return;
+      if (event.key === "Escape") setMenu(false, true);
+      if (event.key !== "Tab") return;
+      const links = Array.from(mobileMenu.querySelectorAll("a[href]"));
+      const first = menuToggle;
+      const last = links[links.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     });
 
     window.addEventListener("resize", () => {
@@ -97,9 +118,17 @@
   if (accordion) {
     const items = Array.from(accordion.querySelectorAll(".faq-item"));
 
-    items.forEach((item) => {
+    items.forEach((item, index) => {
       const button = item.querySelector(".faq-question");
-      if (!button) return;
+      const answer = item.querySelector(".faq-answer");
+      if (!button || !answer) return;
+      button.id = `faq-question-${index + 1}`;
+      answer.id = `faq-answer-${index + 1}`;
+      button.setAttribute("aria-controls", answer.id);
+      answer.setAttribute("role", "region");
+      answer.setAttribute("aria-labelledby", button.id);
+      answer.inert = true;
+      answer.setAttribute("aria-hidden", "true");
 
       button.addEventListener("click", () => {
         const isOpen = item.classList.contains("is-open");
@@ -108,146 +137,186 @@
           other.classList.remove("is-open");
           const otherButton = other.querySelector(".faq-question");
           if (otherButton) otherButton.setAttribute("aria-expanded", "false");
+          const otherAnswer = other.querySelector(".faq-answer");
+          if (otherAnswer) {
+            otherAnswer.inert = true;
+            otherAnswer.setAttribute("aria-hidden", "true");
+          }
         });
 
         if (!isOpen) {
           item.classList.add("is-open");
           button.setAttribute("aria-expanded", "true");
+          answer.inert = false;
+          answer.setAttribute("aria-hidden", "false");
         }
       });
     });
   }
 
-  /* ---------- Before / after slider ---------- */
+  /* ---------- Price search and categories ---------- */
 
-  const beforeAfter = document.querySelector("[data-ba]");
+  const priceList = document.querySelector("[data-price-list]");
 
-  if (beforeAfter) {
-    const media = beforeAfter.querySelector(".ba-media");
-    const range = beforeAfter.querySelector(".ba-range");
-
-    const update = (value) => {
-      if (!media) return;
-      const clamped = Math.min(100, Math.max(0, Number(value) || 0));
-      media.style.setProperty("--pos", `${clamped}%`);
-      if (range) range.setAttribute("aria-valuetext", `${Math.round(clamped)}%`);
+  if (priceList) {
+    const search = priceList.querySelector("[data-price-search]");
+    const categoryFilter = priceList.querySelector("[data-price-category-filter]");
+    const reset = priceList.querySelector("[data-price-reset]");
+    const status = priceList.querySelector("[data-price-count]");
+    const empty = priceList.querySelector("[data-price-empty]");
+    const tools = priceList.querySelector("[data-price-tools]");
+    const normalize = (value) => value.normalize("NFKC").toLocaleLowerCase("ru").replace(/ё/g, "е").replace(/\s+/g, " ").trim();
+    const serviceWord = (count) => {
+      const lastTwo = count % 100;
+      if (lastTwo >= 11 && lastTwo <= 14) return "услуг";
+      if (count % 10 === 1) return "услуга";
+      if (count % 10 >= 2 && count % 10 <= 4) return "услуги";
+      return "услуг";
     };
 
-    if (range) {
-      range.addEventListener("input", (event) => update(event.target.value));
-      update(range.value);
+    if (search && categoryFilter && reset && status && empty && tools) {
+      const categories = Array.from(priceList.querySelectorAll(".price-category")).map((element) => {
+        const name = element.querySelector(".price-category-name").textContent.trim();
+        categoryFilter.add(new Option(name, name));
+        return {
+          element,
+          name,
+          count: element.querySelector("[data-price-category-count]"),
+          rows: Array.from(element.querySelectorAll(".price-row")).map((row) => ({
+            element: row,
+            text: normalize(`${row.querySelector(".price-name").textContent} ${name}`),
+          })),
+        };
+      });
+      const total = categories.reduce((sum, category) => sum + category.rows.length, 0);
+      let wasFiltered = false;
+      let openBeforeFiltering = new Set();
+
+      const updatePrices = () => {
+        const aliases = { губы: "губ", ботулинотерапия: "ботокс", fullface: "фулфейс" };
+        const query = normalize(search.value).replace(/full\s+face/g, "фулфейс");
+        const words = query.split(" ").filter(Boolean).map((word) => aliases[word] || word);
+        const filtered = words.length > 0 || Boolean(categoryFilter.value);
+        if (filtered && !wasFiltered) {
+          openBeforeFiltering = new Set(categories.filter(({ element }) => element.open).map(({ element }) => element));
+        }
+        let found = 0;
+        categories.forEach((category) => {
+          const selected = !categoryFilter.value || categoryFilter.value === category.name;
+          let count = 0;
+          category.rows.forEach((row) => {
+            const matches = selected && words.every((word) => row.text.includes(word));
+            row.element.hidden = !matches;
+            if (matches) count += 1;
+          });
+          category.element.hidden = count === 0;
+          if (filtered) category.element.open = count > 0;
+          else if (wasFiltered) category.element.open = openBeforeFiltering.has(category.element);
+          if (category.count) category.count.textContent = `${count} ${serviceWord(count)}`;
+          found += count;
+        });
+        status.textContent = filtered ? `Найдено: ${found} из ${total}` : `Всего: ${total} ${serviceWord(total)}`;
+        empty.hidden = found !== 0;
+        reset.disabled = !search.value && !categoryFilter.value;
+        wasFiltered = filtered;
+      };
+
+      search.addEventListener("input", updatePrices);
+      categoryFilter.addEventListener("change", updatePrices);
+      reset.addEventListener("click", () => {
+        search.value = "";
+        categoryFilter.value = "";
+        updatePrices();
+        search.focus();
+      });
+      updatePrices();
+      tools.hidden = false;
     }
   }
 
-  /* ---------- Phone mask ---------- */
+  /* ---------- Featured before / after comparison ---------- */
 
-  const phoneInput = document.querySelector('input[name="phone"]');
+  document.querySelectorAll("[data-comparison]").forEach((comparison) => {
+    const media = comparison.querySelector("[data-comparison-media]");
+    const range = comparison.querySelector("[data-comparison-range]");
+    if (!media || !range) return;
 
-  const formatPhone = (value) => {
-    let digits = value.replace(/\D/g, "");
+    const update = () => {
+      const before = Math.min(100, Math.max(0, Number(range.value)));
+      media.style.setProperty("--comparison-position", `${before}%`);
+      range.setAttribute("aria-valuetext", `До: ${before}%, после: ${100 - before}%`);
+    };
 
-    if (digits.startsWith("8")) digits = "7" + digits.slice(1);
-    if (!digits.startsWith("7")) digits = "7" + digits;
-    digits = digits.slice(0, 11);
+    range.addEventListener("input", update);
+    update();
+  });
 
-    const parts = [
-      "+7",
-      digits.slice(1, 4),
-      digits.slice(4, 7),
-      digits.slice(7, 9),
-      digits.slice(9, 11),
-    ];
+  /* ---------- Procedure details ---------- */
 
-    let result = parts[0];
-    if (parts[1]) result += ` (${parts[1]}`;
-    if (parts[1].length === 3) result += ")";
-    if (parts[2]) result += ` ${parts[2]}`;
-    if (parts[3]) result += `-${parts[3]}`;
-    if (parts[4]) result += `-${parts[4]}`;
+  const serviceDialog = document.querySelector("[data-service-dialog]");
+  if (serviceDialog && typeof serviceDialog.showModal === "function") {
+    const content = serviceDialog.querySelector("[data-service-content]");
+    const close = serviceDialog.querySelector("[data-service-close]");
+    let serviceTrigger = null;
 
-    return result;
-  };
-
-  if (phoneInput) {
-    phoneInput.addEventListener("focus", () => {
-      if (!phoneInput.value) phoneInput.value = "+7 (";
+    document.querySelectorAll("[data-service]").forEach((card) => {
+      const template = document.querySelector(`[data-service-template="${card.dataset.service}"]`);
+      if (!template) return;
+      card.setAttribute("role", "button");
+      card.setAttribute("aria-haspopup", "dialog");
+      card.setAttribute("aria-controls", serviceDialog.id);
+      card.setAttribute("aria-label", `Подробнее: ${template.content.querySelector("h2").textContent}`);
+      card.querySelector(".service-more").hidden = false;
+      const open = (event) => {
+        event.preventDefault();
+        serviceTrigger = card;
+        content.replaceChildren(template.content.cloneNode(true));
+        serviceDialog.showModal();
+        document.body.classList.add("procedure-open");
+        close.focus({ preventScroll: true });
+      };
+      card.addEventListener("click", open);
+      card.addEventListener("keydown", (event) => {
+        if (event.key === " ") open(event);
+      });
     });
-
-    phoneInput.addEventListener("blur", () => {
-      if (phoneInput.value.replace(/\D/g, "").length <= 1) {
-        phoneInput.value = "";
+    close.addEventListener("click", () => serviceDialog.close());
+    // Only a click outside the actual panel closes the backdrop.
+    serviceDialog.addEventListener("click", (event) => {
+      const rect = serviceDialog.getBoundingClientRect();
+      if (event.target === serviceDialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) serviceDialog.close();
+      if (event.target.closest("[data-service-booking]")) {
+        serviceDialog.close();
+        const target = document.querySelector(event.target.closest("a").getAttribute("href"));
+        if (target) {
+          target.setAttribute("tabindex", "-1");
+          target.focus({ preventScroll: true });
+        }
       }
     });
-
-    phoneInput.addEventListener("input", () => {
-      const digitsBefore = phoneInput.value.replace(/\D/g, "").length;
-      phoneInput.value = formatPhone(phoneInput.value);
-
-      if (digitsBefore <= 1 && !phoneInput.value.startsWith("+7 (")) {
-        phoneInput.value = "+7 (";
-      }
+    serviceDialog.addEventListener("close", () => {
+      document.body.classList.remove("procedure-open");
+      if (serviceDialog.contains(document.activeElement)) serviceTrigger?.focus({ preventScroll: true });
     });
   }
 
-  /* ---------- Booking form ---------- */
+  /* ---------- Mobile booking shortcut ---------- */
 
-  const form = document.querySelector("[data-booking-form]");
-
-  if (form) {
-    const success = form.querySelector("[data-form-success]");
-    const nameField = form.querySelector('input[name="name"]');
-    const consentField = form.querySelector('input[name="consent"]');
-
-    const setError = (field, message) => {
-      const wrapper = field.closest(".field");
-      if (wrapper) wrapper.classList.toggle("is-invalid", Boolean(message));
-
-      const errorEl = form.querySelector(
-        `[data-error-for="${field.getAttribute("name")}"]`
-      );
-      if (errorEl) errorEl.textContent = message || "";
+  const mobileBooking = document.querySelector("[data-mobile-booking]");
+  const hero = document.querySelector(".hero");
+  const booking = document.querySelector("#booking");
+  if (mobileBooking && hero && booking) {
+    document.body.classList.add("has-mobile-booking");
+    const updateMobileBooking = () => {
+      mobileBooking.hidden = window.innerWidth > 768 || hero.getBoundingClientRect().bottom > 0 || booking.getBoundingClientRect().top < window.innerHeight;
     };
-
-    const clearError = (field) => setError(field, "");
-
-    [nameField, phoneInput, consentField].forEach((field) => {
-      if (!field) return;
-      const eventName = field.type === "checkbox" ? "change" : "input";
-      field.addEventListener(eventName, () => clearError(field));
-    });
-
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      let valid = true;
-
-      if (!nameField || nameField.value.trim().length < 2) {
-        setError(nameField, "Пожалуйста, укажите имя");
-        valid = false;
-      }
-
-      if (!phoneInput || phoneInput.value.replace(/\D/g, "").length < 11) {
-        setError(phoneInput, "Введите номер телефона полностью");
-        valid = false;
-      }
-
-      if (!consentField || !consentField.checked) {
-        setError(consentField, "Необходимо согласие на обработку данных");
-        valid = false;
-      }
-
-      if (!valid) {
-        const firstInvalid = form.querySelector(".is-invalid input");
-        if (firstInvalid) firstInvalid.focus();
-        return;
-      }
-
-      form.classList.add("is-sent");
-      if (success) {
-        success.hidden = false;
-        success.setAttribute("tabindex", "-1");
-        success.focus();
-      }
-    });
+    window.addEventListener("scroll", updateMobileBooking, { passive: true });
+    window.addEventListener("resize", updateMobileBooking);
+    if ("ResizeObserver" in window) {
+      const layoutObserver = new ResizeObserver(updateMobileBooking);
+      layoutObserver.observe(document.querySelector("main"));
+    }
+    updateMobileBooking();
   }
 
   /* ---------- Results lightbox ---------- */
@@ -260,12 +329,15 @@
     const lightboxSource = lightbox.querySelector("[data-lightbox-source]");
     const closeButtons = lightbox.querySelectorAll("[data-lightbox-close]");
     let lastFocused = null;
+    const lightboxBackground = document.querySelectorAll("header, main, footer, .mobile-booking, .skip-link");
 
     const closeLightbox = () => {
+      lightboxBackground.forEach((element) => { element.inert = false; });
+      if (lastFocused) lastFocused.focus();
+      lightbox.inert = true;
       lightbox.classList.remove("is-open");
       lightbox.setAttribute("aria-hidden", "true");
       document.body.classList.remove("lightbox-open");
-      if (lastFocused) lastFocused.focus();
     };
 
     const openLightbox = (button) => {
@@ -280,12 +352,14 @@
       if (lightboxTitle) lightboxTitle.textContent = title || "Результат";
       if (lightboxSource && source) lightboxSource.href = source;
 
+      lightbox.inert = false;
       lightbox.classList.add("is-open");
       lightbox.setAttribute("aria-hidden", "false");
       document.body.classList.add("lightbox-open");
 
       const firstClose = lightbox.querySelector(".lightbox-close");
       if (firstClose) firstClose.focus();
+      lightboxBackground.forEach((element) => { element.inert = true; });
     };
 
     document.querySelectorAll("[data-result]").forEach((button) => {
@@ -307,7 +381,7 @@
 
       const focusable = Array.from(
         lightbox.querySelectorAll("button, a[href]")
-      ).filter((el) => el.offsetParent !== null);
+      ).filter((el) => el.tabIndex >= 0 && el.offsetParent !== null);
       if (!focusable.length) return;
 
       const first = focusable[0];

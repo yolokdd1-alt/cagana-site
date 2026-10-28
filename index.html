@@ -5,19 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>Цагана Боваева — косметолог в Москве и Элисте</title>
-  <meta name="description" content="Цагана Боваева — косметолог. Коррекция губ, ботулинотерапия, увеличение ягодиц и обучение. Приём в Москве и Элисте, запись через DIKIDI.">
+  <meta name="description" content="Цагана Боваева — косметолог. Коррекция губ, ботулинотерапия, увеличение ягодиц и обучение. Приём в Москве и Элисте. Онлайн-запись в Элисте через DIKIDI.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:title" content="Цагана Боваева — косметолог в Москве и Элисте">
   <meta property="og:description" content="Коррекция губ, ботулинотерапия, увеличение ягодиц и обучение. Приём в Москве и Элисте.">
-  <meta property="og:image" content="screenshots/desktop-hero.png">
+  <meta property="og:image" content="https://yolokdd1-alt.github.io/cagana-site/screenshots/desktop-hero.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#f3ece3">
-  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -47,17 +46,17 @@
       </nav>
 
       <div class="header-actions">
-        <a class="btn btn--small" href="https://dikidi.net/882000" target="_blank" rel="noopener">
+        <a class="btn btn--small" href="#booking">
           <span>Записаться</span>
           <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
         </a>
-        <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" data-menu-toggle>
+        <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
           <span></span><span></span>
         </button>
       </div>
     </div>
 
-    <div class="mobile-menu" data-mobile-menu aria-hidden="true">
+    <div class="mobile-menu" id="mobile-menu" data-mobile-menu aria-hidden="true" inert>
       <nav aria-label="Мобильная навигация">
         <a href="#about"><span>01</span>Обо мне</a>
         <a href="#services"><span>02</span>Процедуры</a>
@@ -67,7 +66,7 @@
         <a href="#booking"><span>06</span>Контакты</a>
       </nav>
       <div class="mobile-menu-foot">
-        <a href="https://dikidi.net/882000" target="_blank" rel="noopener">Записаться в DIKIDI ↗</a>
+        <a href="#booking">Выбрать город приёма ↗</a>
         <p>Москва · Элиста<br>@cosm.cagana</p>
       </div>
     </div>
@@ -99,7 +98,7 @@
             <a href="https://www.instagram.com/cosm.cagana/" target="_blank" rel="noopener">@cosm.cagana</a>
           </p>
           <div class="hero-actions reveal" data-delay="3">
-            <a class="btn" href="https://dikidi.net/882000" target="_blank" rel="noopener">
+            <a class="btn" href="#booking">
               <span>Записаться на консультацию</span>
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
             </a>
@@ -127,7 +126,7 @@
 
         <div class="hero-media reveal" data-delay="2">
           <div class="hero-arch">
-            <img src="assets/img/cagana-hero.jpg" alt="Цагана Боваева, косметолог" width="800" height="1000">
+            <img src="assets/img/cagana-hero.jpg" alt="Цагана Боваева, косметолог" width="800" height="1000" fetchpriority="high">
           </div>
 
           <div class="rotating-badge" aria-hidden="true">
@@ -189,14 +188,12 @@
       <div class="container about-grid">
         <div class="about-media reveal">
           <div class="about-image about-image--main">
-            <img src="assets/img/cagana-about.jpg" alt="Цагана Боваева в кабинете" width="930" height="1000">
+            <img src="assets/img/cagana-working.webp" alt="Цагана Боваева проводит аппаратную процедуру в кабинете" width="720" height="960" loading="lazy" decoding="async">
           </div>
-          <div class="about-image about-image--small">
-            <img src="assets/img/result-lips.png" alt="Пример работы: коррекция губ" width="377" height="426">
-          </div>
-          <div class="about-stamp">
-            <span>5,0</span>
-            <small>рейтинг<br>DIKIDI</small>
+          <div class="about-stamp" role="img" aria-label="Рейтинг DIKIDI: 5 из 5">
+            <span class="about-stamp-value" aria-hidden="true">5,0</span>
+            <span class="about-stamp-stars" aria-hidden="true">★★★★★</span>
+            <small aria-hidden="true">рейтинг DIKIDI</small>
           </div>
         </div>
 
@@ -252,7 +249,7 @@
         </div>
 
         <div class="service-grid">
-          <a class="service-card reveal" href="https://dikidi.net/882000" target="_blank" rel="noopener" aria-label="Записаться на коррекцию губ">
+          <a class="service-card reveal" data-service="lips" href="#booking" aria-label="Записаться на коррекцию губ">
             <div class="service-top">
               <span class="service-num">01</span>
               <span class="service-tag">лицо</span>
@@ -261,13 +258,14 @@
             <p>Обсуждаем желаемую форму и объём на консультации. Подбираем препарат и объём под ваши черты.</p>
             <div class="service-foot">
               <span>от 6 500 ₽ · 0,5 мл</span>
+              <span class="service-more" hidden>Подробнее</span>
               <span class="service-arrow" aria-hidden="true">
                 <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
               </span>
             </div>
           </a>
 
-          <a class="service-card reveal" data-delay="1" href="https://dikidi.net/882000" target="_blank" rel="noopener" aria-label="Записаться на ботулинотерапию">
+          <a class="service-card reveal" data-service="botox" data-delay="1" href="#booking" aria-label="Записаться на ботулинотерапию">
             <div class="service-top">
               <span class="service-num">02</span>
               <span class="service-tag">инъекции</span>
@@ -276,13 +274,14 @@
             <p>Зоны коррекции, подходящую процедуру и её стоимость обсуждаем на консультации.</p>
             <div class="service-foot">
               <span>Full Face · 17 000 ₽</span>
+              <span class="service-more" hidden>Подробнее</span>
               <span class="service-arrow" aria-hidden="true">
                 <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
               </span>
             </div>
           </a>
 
-          <a class="service-card reveal" data-delay="2" href="https://dikidi.net/882000" target="_blank" rel="noopener" aria-label="Записаться на увеличение ягодиц">
+          <a class="service-card reveal" data-service="body" data-delay="2" href="#booking" aria-label="Записаться на увеличение ягодиц">
             <div class="service-top">
               <span class="service-num">03</span>
               <span class="service-tag">тело</span>
@@ -291,13 +290,14 @@
             <p>Одно из направлений практики. Объём и препарат подбираются индивидуально на консультации.</p>
             <div class="service-foot">
               <span>от 50 000 ₽ · 200 мл</span>
+              <span class="service-more" hidden>Подробнее</span>
               <span class="service-arrow" aria-hidden="true">
                 <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
               </span>
             </div>
           </a>
 
-          <a class="service-card reveal" data-delay="3" href="https://www.instagram.com/cosm.cagana/" target="_blank" rel="noopener" aria-label="Узнать об обучении в Instagram">
+          <a class="service-card reveal" data-service="training" data-delay="3" href="https://www.instagram.com/cosm.cagana/" target="_blank" rel="noopener" aria-label="Узнать об обучении в Instagram">
             <div class="service-top">
               <span class="service-num">04</span>
               <span class="service-tag">обучение</span>
@@ -306,6 +306,7 @@
             <p>Программу, формат и ближайшие даты уточняйте лично. Стоимость обучения — по запросу.</p>
             <div class="service-foot">
               <span>Формат и даты · по запросу</span>
+              <span class="service-more" hidden>Подробнее</span>
               <span class="service-arrow" aria-hidden="true">
                 <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
               </span>
@@ -314,7 +315,7 @@
         </div>
 
         <p class="service-note reveal">
-          Полный прайс — 99 услуг — в разделе «Цены». Запись открыта в DIKIDI.
+          Полный прайс для Элисты — 99 услуг — в разделе «Цены». Выберите город в разделе «Запись».
           <a class="link-underline" href="#prices">Смотреть цены</a>
         </p>
       </div>
@@ -329,7 +330,7 @@
             <p>Спокойно, последовательно и с вниманием к тому, что важно для вас.</p>
             <span>Цагана Боваева · косметолог</span>
           </div>
-          <a class="link-arrow link-arrow--light reveal" data-delay="3" href="https://dikidi.net/882000" target="_blank" rel="noopener">
+          <a class="link-arrow link-arrow--light reveal" data-delay="3" href="#booking">
             Выбрать время для встречи
             <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
           </a>
@@ -367,7 +368,7 @@
           <p class="section-label reveal"><span>03</span> Стоимость</p>
           <h2 class="section-title reveal" data-delay="1">Стоимость<br><em>процедур</em></h2>
           <p class="section-intro reveal" data-delay="2">
-            Цены перенесены из DIKIDI и не обновляются автоматически.
+            Цены для Элисты перенесены из DIKIDI <time datetime="2026-10-27">27 октября 2026 года</time> и не обновляются автоматически.
             Стоимость обучения уточняйте у Цаганы.
           </p>
           <div class="price-highlight reveal" data-delay="3">
@@ -430,7 +431,7 @@
       </div>
 
       <div class="container">
-        <div class="all-prices reveal">
+        <div class="all-prices reveal" id="full-prices" data-price-list>
           <div class="all-prices-head">
             <div>
               <p class="section-label"><span>Полный прайс</span> 99 услуг</p>
@@ -442,11 +443,33 @@
               и свободное время.
             </p>
           </div>
-<div class="price-categories">
+          <div class="price-tools" data-price-tools hidden>
+            <div class="price-filter-fields">
+              <div class="price-filter-field">
+                <label for="price-search">Найти процедуру</label>
+                <input id="price-search" data-price-search type="search" placeholder="Например, губы или ботокс" autocomplete="off" aria-controls="price-categories">
+              </div>
+              <div class="price-filter-field">
+                <label for="price-category-filter">Категория</label>
+                <select id="price-category-filter" data-price-category-filter aria-controls="price-categories">
+                  <option value="">Все категории</option>
+                </select>
+              </div>
+            </div>
+            <div class="price-filter-status">
+              <p data-price-count role="status" aria-live="polite" aria-atomic="true"></p>
+              <button class="price-filter-reset" data-price-reset type="button" disabled>Сбросить фильтры</button>
+            </div>
+          </div>
+          <div class="price-empty" data-price-empty hidden>
+            <h4>Ничего не найдено</h4>
+            <p>Попробуйте другое название или выберите все категории.</p>
+          </div>
+<div class="price-categories" id="price-categories">
   <details class="price-category">
     <summary>
       <span class="price-category-name">Без категории</span>
-      <span class="price-category-meta">3&nbsp;услуги<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>3&nbsp;услуги</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -469,7 +492,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Биоревитализация</span>
-      <span class="price-category-meta">15&nbsp;услуг<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>15&nbsp;услуг</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -552,7 +575,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Ботокс</span>
-      <span class="price-category-meta">27&nbsp;услуг<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>27&nbsp;услуг</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -695,7 +718,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Интимная пластика</span>
-      <span class="price-category-meta">5&nbsp;услуг<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>5&nbsp;услуг</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -728,7 +751,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Коллаген</span>
-      <span class="price-category-meta">7&nbsp;услуг<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>7&nbsp;услуг</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -771,7 +794,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Коллагеностимулятор</span>
-      <span class="price-category-meta">2&nbsp;услуги<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>2&nbsp;услуги</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -789,7 +812,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Консультация</span>
-      <span class="price-category-meta">1&nbsp;услуга<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>1&nbsp;услуга</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -802,7 +825,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Контурная пластика</span>
-      <span class="price-category-meta">13&nbsp;услуг<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>13&nbsp;услуг</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -875,7 +898,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Лазерная шлифовка</span>
-      <span class="price-category-meta">5&nbsp;услуг<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>5&nbsp;услуг</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -908,7 +931,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Липолитик</span>
-      <span class="price-category-meta">6&nbsp;услуг<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>6&nbsp;услуг</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -946,7 +969,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Липоредукция</span>
-      <span class="price-category-meta">1&nbsp;услуга<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>1&nbsp;услуга</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -959,7 +982,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Микроигольчатый РФ</span>
-      <span class="price-category-meta">1&nbsp;услуга<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>1&nbsp;услуга</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -972,7 +995,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Нити</span>
-      <span class="price-category-meta">4&nbsp;услуги<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>4&nbsp;услуги</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -1000,7 +1023,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Подтяжка нитями COG</span>
-      <span class="price-category-meta">2&nbsp;услуги<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>2&nbsp;услуги</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -1018,7 +1041,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Препараты от Реваколл</span>
-      <span class="price-category-meta">2&nbsp;услуги<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>2&nbsp;услуги</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -1036,7 +1059,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Удаление филлера</span>
-      <span class="price-category-meta">1&nbsp;услуга<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>1&nbsp;услуга</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -1049,7 +1072,7 @@
   <details class="price-category">
     <summary>
       <span class="price-category-name">Ягодицы</span>
-      <span class="price-category-meta">4&nbsp;услуги<span class="price-category-icon" aria-hidden="true"></span></span>
+      <span class="price-category-meta"><span data-price-category-count>4&nbsp;услуги</span><span class="price-category-icon" aria-hidden="true"></span></span>
     </summary>
     <div class="price-category-body">
       <div class="price-row price-row--compact">
@@ -1094,6 +1117,26 @@
           </p>
         </div>
 
+        <div class="featured-comparison reveal" data-comparison>
+          <div class="featured-comparison-copy">
+            <p class="section-label">Рассмотрите ближе</p>
+            <h3 id="fullface-comparison-title">Ботулинотерапия<br><em>Full Face</em></h3>
+            <p class="comparison-instruction" id="fullface-comparison-hint">Передвигайте ползунок, чтобы сравнить фото до и после процедуры. Можно управлять стрелками на клавиатуре.</p>
+            <a class="link-arrow" href="https://www.instagram.com/stories/highlights/18098362868245941/" target="_blank" rel="noopener">Смотреть кейс в Instagram ↗</a>
+          </div>
+          <figure class="comparison-figure" aria-labelledby="fullface-comparison-title">
+            <div class="comparison-media" data-comparison-media>
+              <img class="comparison-after" src="assets/img/fullface-front-after.webp" alt="Лицо анфас после ботулинотерапии Full Face" width="468" height="624" loading="lazy" decoding="async">
+              <img class="comparison-before" src="assets/img/fullface-front-before.webp" alt="Лицо анфас до ботулинотерапии Full Face" width="468" height="624" loading="lazy" decoding="async">
+              <span class="comparison-label comparison-label--before" aria-hidden="true">До</span>
+              <span class="comparison-label comparison-label--after" aria-hidden="true">После</span>
+              <span class="comparison-divider" aria-hidden="true"><span>↔</span></span>
+              <input class="comparison-range" data-comparison-range type="range" min="0" max="100" value="50" aria-label="Сравнение Full Face до и после" aria-describedby="fullface-comparison-hint" aria-valuetext="До: 50%, после: 50%">
+            </div>
+            <figcaption class="comparison-caption">Ботулинотерапия Full Face · фото из кейса Цаганы</figcaption>
+          </figure>
+        </div>
+
         <div class="results-gallery">
           <figure class="result-card reveal">
             <button class="result-card-media" type="button"
@@ -1102,7 +1145,7 @@
               data-title="Коррекция губ"
               data-source="https://www.instagram.com/stories/highlights/18098362868245941/"
               aria-label="Открыть сравнение: коррекция губ">
-              <img src="assets/img/result-lips.png" alt="Сравнение до и после: увеличение губ" width="377" height="426">
+              <img src="assets/img/result-lips.png" alt="Сравнение до и после: увеличение губ" width="377" height="426" loading="lazy" decoding="async">
               <span class="result-zoom" aria-hidden="true">Увеличить</span>
             </button>
             <figcaption>
@@ -1122,7 +1165,7 @@
               data-title="Ботулинотерапия Full Face"
               data-source="https://www.instagram.com/stories/highlights/18098362868245941/"
               aria-label="Открыть сравнение: ботулинотерапия Full Face">
-              <img src="assets/img/result-fullface.png" alt="Сравнение до и после: ботулинотерапия Full Face" width="377" height="425">
+              <img src="assets/img/result-fullface.png" alt="Сравнение до и после: ботулинотерапия Full Face" width="377" height="425" loading="lazy" decoding="async">
               <span class="result-zoom" aria-hidden="true">Увеличить</span>
             </button>
             <figcaption>
@@ -1142,7 +1185,7 @@
               data-title="Ботулинотерапия платизмы"
               data-source="https://www.instagram.com/stories/highlights/18098362868245941/"
               aria-label="Открыть сравнение: ботулинотерапия платизмы">
-              <img src="assets/img/result-neck.png" alt="Сравнение до и после: ботулинотерапия платизмы" width="377" height="425">
+              <img src="assets/img/result-neck.png" alt="Сравнение до и после: ботулинотерапия платизмы" width="377" height="425" loading="lazy" decoding="async">
               <span class="result-zoom" aria-hidden="true">Увеличить</span>
             </button>
             <figcaption>
@@ -1241,8 +1284,10 @@
               <span class="faq-icon" aria-hidden="true"></span>
             </button>
             <div class="faq-answer">
-              <p>Начните с консультации: обсудите пожелания и выбор процедуры с Цаганой. Запись доступна через
-                <a class="link-underline" href="https://dikidi.net/882000" target="_blank" rel="noopener">DIKIDI</a>.</p>
+              <div class="faq-answer-inner">
+              <p>Начните с консультации: обсудите пожелания и выбор процедуры с Цаганой.
+                <a class="link-underline" href="#booking">Выберите город приёма</a>: для Элисты доступна онлайн-запись, для Москвы уточните адрес и даты у Цаганы.</p>
+              </div>
             </div>
           </div>
           <div class="faq-item reveal" data-delay="1">
@@ -1251,7 +1296,9 @@
               <span class="faq-icon" aria-hidden="true"></span>
             </button>
             <div class="faq-answer">
+              <div class="faq-answer-inner">
               <p>Подготовьте список средств, которыми пользуетесь, и вопросы специалисту. Конкретные рекомендации косметолог даст после уточнения выбранной процедуры.</p>
+              </div>
             </div>
           </div>
           <div class="faq-item reveal" data-delay="2">
@@ -1260,10 +1307,12 @@
               <span class="faq-icon" aria-hidden="true"></span>
             </button>
             <div class="faq-answer">
-              <p>Основные цены и полный прайс — в разделе «Цены». Для выбора даты откройте
-                <a class="link-underline" href="https://dikidi.net/882000" target="_blank" rel="noopener">DIKIDI</a>
-                или напишите в Instagram
-                <a class="link-underline" href="https://www.instagram.com/cosm.cagana/" target="_blank" rel="noopener">@cosm.cagana</a>.</p>
+              <div class="faq-answer-inner">
+              <p>Прайс для Элисты — в разделе «Цены». В Элисте выбрать дату можно через
+                <a class="link-underline" href="https://dikidi.net/882000" target="_blank" rel="noopener">DIKIDI</a>.
+                Стоимость, адрес и даты приёма в Москве уточните у Цаганы:
+                <a class="link-underline" href="https://vk.com/cosmcagana" target="_blank" rel="noopener">написать во ВКонтакте</a>.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1287,92 +1336,101 @@
               </span>
               <span><small>instagram</small>@cosm.cagana</span>
             </a>
-            <a class="contact-row" href="https://dikidi.net/882000" target="_blank" rel="noopener">
+            <a class="contact-row" href="https://vk.com/cosmcagana" target="_blank" rel="noopener">
               <span class="contact-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M4 10h16M8 3.5v4M16 3.5v4M8 14h3M8 17h6" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M4 5.5h16v11H10l-5 4v-4H4z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
               </span>
-              <span><small>онлайн-запись</small>DIKIDI · выбрать время</span>
+              <span><small>вопросы и запись</small>ВКонтакте · cosmcagana</span>
             </a>
-            <div class="contact-row">
-              <span class="contact-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11Z" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
-              </span>
-              <span><small>Элиста</small>ул. Ленина, 263А<br>цоколь, кабинет 5</span>
-            </div>
-            <div class="contact-row">
-              <span class="contact-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
-              </span>
-              <span><small>Москва</small>Приём по актуальному графику<br>даты — в DIKIDI</span>
-            </div>
           </div>
         </div>
 
         <div class="booking-card reveal" data-delay="1">
-          <form class="booking-form" data-booking-form novalidate>
-            <div class="form-head">
-              <h3>Заявка на визит</h3>
-              <p>Оставьте контакты — Цагана свяжется и подберёт удобное время. Или запишитесь через DIKIDI.</p>
+          <div class="booking-options" aria-labelledby="booking-options-title">
+            <div class="booking-options-head">
+              <h3 id="booking-options-title">Выберите город приёма</h3>
+              <p>Запишитесь в Элисте онлайн или уточните ближайший приём в Москве.</p>
             </div>
-
-            <div class="field">
-              <label for="name">Как вас зовут</label>
-              <input id="name" name="name" type="text" placeholder="Имя" autocomplete="name" required>
-              <span class="field-error" data-error-for="name"></span>
-            </div>
-
-            <div class="field-row">
-              <div class="field">
-                <label for="phone">Телефон</label>
-                <input id="phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" required>
-                <span class="field-error" data-error-for="phone"></span>
-              </div>
-              <div class="field">
-                <label for="service">Что интересует</label>
-                <select id="service" name="service">
-                  <option value="">Пока не знаю</option>
-                  <option>Консультация</option>
-                  <option>Коррекция губ</option>
-                  <option>Ботулинотерапия</option>
-                  <option>Увеличение ягодиц</option>
-                  <option>Обучение</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="message">Комментарий <span class="optional">— необязательно</span></label>
-              <textarea id="message" name="message" rows="3" placeholder="Расскажите о пожеланиях или задайте вопрос"></textarea>
-            </div>
-
-            <label class="checkbox">
-              <input type="checkbox" name="consent" required>
-              <span>Согласен(а) на обработку персональных данных и с <a href="#">политикой конфиденциальности</a></span>
-            </label>
-            <span class="field-error field-error--consent" data-error-for="consent"></span>
-
-            <button class="btn btn--accent btn--wide" type="submit">
-              <span>Отправить заявку</span>
-              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
-            </button>
-            <p class="form-alt">
-              Или <a href="https://dikidi.net/882000" target="_blank" rel="noopener">выберите время в DIKIDI</a>.
-            </p>
-
-            <div class="form-success" data-form-success role="status" aria-live="polite" hidden>
-              <span class="form-success-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
-              </span>
-              <h4>Спасибо, заявка отправлена</h4>
-              <p>Цагана свяжется с вами, чтобы подтвердить время визита.</p>
-            </div>
-          </form>
+            <section class="booking-city" aria-labelledby="booking-elista-title">
+              <h4 id="booking-elista-title">Элиста</h4>
+              <p class="booking-city-address"><a href="https://yandex.ru/maps/?text=%D0%AD%D0%BB%D0%B8%D1%81%D1%82%D0%B0%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C%20263%D0%90" target="_blank" rel="noopener" aria-label="Элиста, улица Ленина, 263А — открыть адрес в Яндекс Картах">ул. Ленина, 263А ↗</a><br><span>Цоколь, кабинет 5</span></p>
+              <a class="btn btn--accent btn--wide" href="https://dikidi.net/882000" target="_blank" rel="noopener" data-booking-elista>
+                <span>Записаться в Элисте</span>
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+              </a>
+              <p class="booking-city-note">Услуги, даты и свободное время — в DIKIDI.</p>
+            </section>
+            <section class="booking-city" aria-labelledby="booking-moscow-title">
+              <h4 id="booking-moscow-title">Москва</h4>
+              <p class="booking-city-text">Перед записью уточните у Цаганы адрес, ближайшие даты приёма и стоимость процедуры.</p>
+              <a class="btn btn--outline btn--wide" href="https://vk.com/cosmcagana" target="_blank" rel="noopener" data-booking-moscow>
+                <span>Уточнить приём в Москве</span>
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+              </a>
+              <p class="booking-city-note">Откроется профиль ВКонтакте. Можно также <a class="link-underline" href="https://www.instagram.com/cosm.cagana/" target="_blank" rel="noopener">написать в Instagram</a>.</p>
+            </section>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <div class="lightbox" data-lightbox aria-hidden="true">
+  <div class="mobile-booking" data-mobile-booking hidden>
+    <a class="btn btn--accent btn--wide" href="#booking">Выбрать город и записаться <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a>
+  </div>
+
+  <dialog class="procedure-dialog" id="service-details" data-service-dialog aria-labelledby="procedure-title">
+    <button class="procedure-close" type="button" data-service-close aria-label="Закрыть подробности">×</button>
+    <div data-service-content></div>
+  </dialog>
+
+  <template data-service-template="lips">
+    <p class="section-label">Процедуры</p>
+    <h2 id="procedure-title">Коррекция губ</h2>
+    <p class="procedure-lead">Обсуждаем желаемую форму и объём, подбираем препарат с учётом ваших черт.</p>
+    <div class="procedure-price"><strong>от 6 500 ₽ · 0,5 мл</strong><span>По опубликованному прайсу для Элисты. Стоимость приёма в Москве уточняется отдельно.</span></div>
+    <h3>Что обсудим на консультации</h3>
+    <p>Какая форма вам нравится, какой объём вы рассматриваете и какие вопросы хотите задать специалисту. Окончательный выбор препарата и объёма — на консультации.</p>
+    <h3>Перед визитом</h3>
+    <p>Подготовьте вопросы специалисту. Рекомендации по подготовке, продолжительность приёма и дальнейший уход уточните при согласовании процедуры.</p>
+    <a class="btn btn--wide" href="#booking" data-service-booking>Выбрать город и записаться <span aria-hidden="true">→</span></a>
+    <a class="link-arrow procedure-prices-link" href="#prices" data-service-booking>Посмотреть полный прайс <span aria-hidden="true">→</span></a>
+  </template>
+  <template data-service-template="botox">
+    <p class="section-label">Процедуры</p>
+    <h2 id="procedure-title">Ботулинотерапия</h2>
+    <p class="procedure-lead">Зоны коррекции и подходящий вариант процедуры обсуждаются индивидуально на консультации.</p>
+    <div class="procedure-price"><strong>Full Face · 17 000 ₽</strong><span>По опубликованному прайсу для Элисты. Стоимость приёма в Москве уточняется отдельно.</span></div>
+    <h3>Что обсудим на консультации</h3>
+    <p>Какие зоны вас интересуют и какого результата вы ожидаете. Состав процедуры и итоговую стоимость уточните у Цаганы до записи.</p>
+    <h3>Перед визитом</h3>
+    <p>Подготовьте вопросы специалисту. Рекомендации по подготовке, продолжительность приёма и дальнейший уход уточните при согласовании процедуры.</p>
+    <a class="btn btn--wide" href="#booking" data-service-booking>Выбрать город и записаться <span aria-hidden="true">→</span></a>
+    <a class="link-arrow procedure-prices-link" href="#prices" data-service-booking>Посмотреть полный прайс <span aria-hidden="true">→</span></a>
+  </template>
+  <template data-service-template="body">
+    <p class="section-label">Процедуры</p>
+    <h2 id="procedure-title">Увеличение ягодиц</h2>
+    <p class="procedure-lead">Препарат и объём подбираются индивидуально на консультации.</p>
+    <div class="procedure-price"><strong>от 50 000 ₽ · 200 мл</strong><span>По опубликованному прайсу для Элисты. Стоимость приёма в Москве уточняется отдельно.</span></div>
+    <h3>Что обсудим на консультации</h3>
+    <p>Ваши пожелания, возможный объём и препарат. Итоговую стоимость и порядок проведения уточните у Цаганы на консультации.</p>
+    <h3>Перед визитом</h3>
+    <p>Подготовьте вопросы специалисту. Рекомендации по подготовке, продолжительность приёма и дальнейший уход уточните при согласовании процедуры.</p>
+    <a class="btn btn--wide" href="#booking" data-service-booking>Выбрать город и записаться <span aria-hidden="true">→</span></a>
+    <a class="link-arrow procedure-prices-link" href="#prices" data-service-booking>Посмотреть полный прайс <span aria-hidden="true">→</span></a>
+  </template>
+  <template data-service-template="training">
+    <p class="section-label">Обучение</p>
+    <h2 id="procedure-title">Обучение у Цаганы</h2>
+    <p class="procedure-lead">Программа, формат и ближайшие даты — по личному запросу.</p>
+    <div class="procedure-price"><strong>Стоимость по запросу</strong><span>Уточните программу и условия участия перед записью.</span></div>
+    <h3>Что уточнить</h3>
+    <p>Расскажите о своём опыте и интересующем направлении. Обсудите с Цаганой содержание программы, формат, место проведения и ближайшие даты.</p>
+    <a class="btn btn--wide" href="https://www.instagram.com/cosm.cagana/" target="_blank" rel="noopener">Узнать об обучении <span aria-hidden="true">↗</span></a>
+  </template>
+
+  <div class="lightbox" data-lightbox aria-hidden="true" inert>
     <button class="lightbox-backdrop" type="button" data-lightbox-close tabindex="-1" aria-label="Закрыть просмотр"></button>
     <div class="lightbox-panel" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
       <button class="lightbox-close" type="button" data-lightbox-close aria-label="Закрыть">
@@ -1422,7 +1480,7 @@
         <p>© <span data-year>2026</span> Цагана Боваева · косметолог</p>
         <p>Имеются противопоказания. Необходима консультация специалиста.</p>
         <p>Цены из DIKIDI · не являются публичной офертой</p>
-        <a href="#">Политика конфиденциальности</a>
+        <a href="#booking">Запись и контакты</a>
       </div>
     </div>
   </footer>
